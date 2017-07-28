@@ -4,37 +4,30 @@ import PropTypes from 'prop-types';
 class Shelter extends React.Component {
   constructor(props) {
     super(props)
-    this.adoptAFriend = this.adoptAFriend.bind(this)
+
     this.state = {
-      animals: []
+      animals: this.props.animals
     }
   }
 
-  componentDidMount() {
-    this.setState({animals: this.props.animals})
-  }
-
-  adoptAFriend(name) {
-    let friendAdopted = this.state.animals.filter((el) => {
-      return el.name !== name
-    })
-    this.setState({animals: friendAdopted})
-  }
+  
 
   renderAdoptableAnimals() {
+    const {animals} =this.state
     if (this.state.animals.length !== 0) {
       return (
+        
         <div className="ui middle aligned divided list">
-          {this.state.animals.map((animal, i) =>  
+          {Object.keys(this.state.animals).map((animalId,i) =>  
             <div className="item" key={i} style={{padding: "20px"}}>
               <div className="right floated content">
-                <div className="ui button" onClick={() => this.adoptAFriend(animal.name)}>
+                <div className="ui button" onClick={() => this.props.adoptAFriend(animalId)}>
                   Adopt
                 </div>
               </div>
               <div className="content">
-                <div className="header"><h3>{animal.name}</h3></div>
-                <div className="description">{animal.description}</div>
+                <div className="header"><h3>{animals[animalId].name}</h3></div>
+                <div className="description">{animals[animalId].description}</div>
               </div>
             </div>
           )}
