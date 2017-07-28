@@ -14,9 +14,8 @@ class Shelter extends React.Component {
 
   renderAdoptableAnimals() {
     const {animals} =this.state
-    if (this.state.animals.length !== 0) {
-      return (
-        
+    if (animals.length !== 0) {
+      return (       
         <div className="ui middle aligned divided list">
           {Object.keys(this.state.animals).map((animalId,i) =>  
             <div className="item" key={i} style={{padding: "20px"}}>
@@ -82,14 +81,14 @@ const styles = {
   }
 }
 
-Shelter.propTypes = {
-  animals: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    species: PropTypes.string.isRequired,
-    breed: PropTypes.string.isRequired,
-    age: PropTypes.number.isRequired,
-    description: PropTypes.string
-  })).isRequired
-}
+// Shelter.propTypes = {
+//   animals: PropTypes.arrayOf(PropTypes.shape({
+//     name: PropTypes.string,
+//     species: PropTypes.string.isRequired,
+//     breed: PropTypes.string.isRequired,
+//     age: PropTypes.number.isRequired,
+//     description: PropTypes.string
+//   })).isRequired
+//}
 
 export default Shelter
