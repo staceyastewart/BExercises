@@ -9,13 +9,13 @@ class App extends React.Component {
     this.adoptAFriend = this.adoptAFriend.bind(this)
     this.state = {
       shelter: {
-        animals: [1, 2],
+        animals: [2, 3],
         name: "Backenders"
       },
       homes: {
         1: {
           name: "happyhome",
-          animals: [3]
+          animals: [1]
         }
       },
       animals: {
@@ -38,7 +38,7 @@ class App extends React.Component {
           species: "turtle",
           breed: "snapping",
           age: 100,
-          description: "outlived all of its owners"
+          description: "Outlived all of its owners"
         }
       }
     }
@@ -53,10 +53,10 @@ class App extends React.Component {
           }, {})   
   }
   adoptAFriend(id) {
-    let friendAdopted = this.state.shelter.animals.filter((el) => {
+    let adoptableFriends = this.state.shelter.animals.filter((el) => {
       return el !== parseInt(id)
     })
-    var newShelter = Object.assign({}, this.state.shelter, { animals: friendAdopted })
+    var newShelter = Object.assign({}, this.state.shelter, { animals: adoptableFriends })
     console.log(newShelter)
     this.setState({ shelter: newShelter }, function(){console.log(this.state.shelter)})
     console.log(this.state.shelter)
@@ -67,6 +67,7 @@ class App extends React.Component {
         <div style={{ margin: "0 auto", padding: "50px" }}>
           <Shelter animals={this.passShelterAnimals()} adoptAFriend={this.adoptAFriend} />
         </div>
+        <div style={{ border:"2px solid blue", width: "200px"}}><Home animal={this.state.homes[1].animals} /></div>
       </div>
     );
   }

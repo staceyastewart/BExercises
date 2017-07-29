@@ -5,9 +5,6 @@ class Shelter extends React.Component {
   constructor(props) {
     super(props)
   }
-  // componentWillReceiveProps(nextProps) {
-  // this.setState({ animals: nextProps.animals });  
-  // }
   renderAdoptableAnimals() {
     if (this.props.animals.length !== 0) {
       return (       
