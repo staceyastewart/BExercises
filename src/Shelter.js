@@ -4,20 +4,15 @@ import PropTypes from 'prop-types';
 class Shelter extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      animals: this.props.animals
-    }
   }
-
-  
-
+  // componentWillReceiveProps(nextProps) {
+  // this.setState({ animals: nextProps.animals });  
+  // }
   renderAdoptableAnimals() {
-    const {animals} =this.state
-    if (animals.length !== 0) {
+    if (this.props.animals.length !== 0) {
       return (       
         <div className="ui middle aligned divided list">
-          {Object.keys(this.state.animals).map((animalId,i) =>  
+          {Object.keys(this.props.animals).map((animalId,i) =>  
             <div className="item" key={i} style={{padding: "20px"}}>
               <div className="right floated content">
                 <div className="ui button" onClick={() => this.props.adoptAFriend(animalId)}>
@@ -25,8 +20,8 @@ class Shelter extends React.Component {
                 </div>
               </div>
               <div className="content">
-                <div className="header"><h3>{animals[animalId].name}</h3></div>
-                <div className="description">{animals[animalId].description}</div>
+                <div className="header"><h3>{this.props.animals[animalId].name}</h3></div>
+                <div className="description">{this.props.animals[animalId].description}</div>
               </div>
             </div>
           )}

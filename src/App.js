@@ -58,7 +58,7 @@ class App extends React.Component {
     })
     var newShelter = Object.assign({}, this.state.shelter, { animals: friendAdopted })
     console.log(newShelter)
-    this.setState({ shelter: newShelter })
+    this.setState({ shelter: newShelter }, function(){console.log(this.state.shelter)})
     console.log(this.state.shelter)
   }
   render() {
