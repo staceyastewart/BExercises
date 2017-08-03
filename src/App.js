@@ -1,6 +1,8 @@
 import React from 'react';
+import { database } from "./db"
 import Shelter from './Shelter.js';
 import Home from './Home.js'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -43,6 +45,16 @@ class App extends React.Component {
       }
     }
   }
+
+  componentDidMount() {
+    this.logAnimals()
+  }
+
+  logAnimals() {
+    database.ref("animals").on("value", (snapshot) => {
+      this.setState({animals: snapshot.val()})
+    })
+  }
   passShelterAnimals(){
     return Object.keys(this.state.animals).filter(key => {
            // console.log(this.state.shelter.animals.includes(parseInt(key)))
@@ -50,16 +62,16 @@ class App extends React.Component {
           }).reduce((obj, key) => {
             obj[key] = this.state.animals[key];
             return obj;
-          }, {})   
+          }, {})
   }
   adoptAFriend(id) {
     let adoptableFriends = this.state.shelter.animals.filter((el) => {
       return el !== parseInt(id)
     })
     var newShelter = Object.assign({}, this.state.shelter, { animals: adoptableFriends })
-    console.log(newShelter)
+    // console.log(newShelter)
     this.setState({ shelter: newShelter }, function(){console.log(this.state.shelter)})
-    console.log(this.state.shelter)
+    // console.log(this.state.shelter)
   }
   render() {
     return (
